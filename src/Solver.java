@@ -7,7 +7,7 @@ public class Solver {
 	
 	public static void main(String[] args) {
 		Graph g = parseFile(args[0]);
-		//System.out.println(g.getVertex(1).toString());
+		System.out.println(g.getVertex(1).toString());
 		//System.out.println(g.getVertex(5).toString());
 		
 	}
@@ -34,6 +34,7 @@ public class Solver {
 				currentAdjList.add(g.getVertex(Integer.parseInt(adjVertex)));
 			}
 			currentIndex++;
+			if(currentIndex==size+1) break;
 		}
 		return g;
 	}
