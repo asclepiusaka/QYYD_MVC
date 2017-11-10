@@ -1,8 +1,8 @@
+package big;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
-
 public class Solver {
 	
 	public static void main(String[] args) {
@@ -26,15 +26,15 @@ public class Solver {
 		Graph g = new Graph(size);
 		int currentIndex = 1;//start from the first vertex;
 		while(sc.hasNextLine()) {
-			Vertex currentVertex = g.getVertex(currentIndex);
+			Vertex currentVertex = g.getVertex(currentIndex);			
 			List<Vertex> currentAdjList = currentVertex.getAdjList();
 			String line = sc.nextLine();
-			String[] vertexs = line.trim().split("\\s+");
+			String[] vertexs = line.trim().split("\\s+");			
 			for(String adjVertex:vertexs) {
 				currentAdjList.add(g.getVertex(Integer.parseInt(adjVertex)));
 			}
-			currentIndex++;
+		currentIndex++;
 		}
-		return g;
-	}
+		return g;	
+		}
 }

@@ -1,4 +1,4 @@
-
+package big;
 
 public class Edge {
 	Vertex v1;
@@ -31,6 +31,8 @@ public class Edge {
 	}
 	//check if two edges are equal
 	public boolean equals(Edge e) {
+		if(this==e)
+			return true;
 		if((this.v1.equals((Vertex)e.v1)&&this.v2.equals((Vertex)e.v2))||(this.v1.equals((Vertex)e.v2)&&this.v2.equals((Vertex)e.v1)))
 			return true;
 		return false;
