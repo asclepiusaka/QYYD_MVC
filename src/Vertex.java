@@ -40,7 +40,7 @@ public class Vertex {
 	 	
 	 	public int[] getEdgeKeys(){
 	 		int[] keys = new int [adjacentEdge.size()];
-	 		for(int i=0, i<keys.length; i++){
+	 		for(int i=0; i<keys.length; i++){
 	 			Edge temp = adjacentEdge.get(i);
 	 			keys[i] = temp.id;
 	 		}

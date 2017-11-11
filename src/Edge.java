@@ -40,8 +40,8 @@ public class Edge {
 		return false;
 	}
 	//check if two edges are equal
-	public boolean equals(Edge e) {=
-		if(this==e)=
+	public boolean equals(Edge e) {
+		if(this==e)
 			return true;
 		if(this.id == e.id) {
 			return true;
@@ -59,7 +59,7 @@ public class Edge {
 	}
 	//print the edge
 	@Override 
-	public String toString() {=
-		return("Between vertex: "+v1.getId()+" and vertex: "+v2.getId());=
+	public String toString() {
+		return("Between vertex: "+v1.getId()+" and vertex: "+v2.getId());
 	}
 }

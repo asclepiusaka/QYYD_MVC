@@ -85,7 +85,7 @@ class BnB{
 					G.vertexCovered[vertexStack.pop()] = false;
 				}
 				while(!edgeStack.empty()){
-					Edge tempEdge = G.edgeMap.get([edgeStack.pop()]);
+					Edge tempEdge = G.edgeMap.get(edgeStack.pop());
 					tempEdge.covered = false;//change to key later
 				}
 				//restore current solution
