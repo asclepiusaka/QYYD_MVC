@@ -94,8 +94,9 @@ public class Solver {
 					currentAdjEdgeList.add(g.edgeMap.get(edgeId));
 					}
 				}
-				currentIndex++;
-				if(currentIndex==size+1) break;
+			currentVertex.degree = currentAdjList.size();
+			currentIndex++;
+			if(currentIndex==size+1) break;
 		}
 		return g;	
 	}
