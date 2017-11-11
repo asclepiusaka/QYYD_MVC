@@ -10,8 +10,8 @@ public class Graph {
 	 	//maybe another boolean array to denote visited
 	 	//add data structure as you need
 	public Map<Integer,Edge> edgeMap;
-	public boolean[] vertexCovered;
-	public boolean[] edgeCovered;
+	public boolean[] vertexCovered;//should be vertexUsed
+	public int coveredEdgeSize = 0;
 	 
 	
 	public Graph(int initSize) {
