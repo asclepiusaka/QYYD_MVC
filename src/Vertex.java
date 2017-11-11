@@ -38,6 +38,15 @@ public class Vertex {
 	 		return this.myId;
 	 	}
 	 	
+	 	public int[] getEdgeKeys(){
+	 		int[] keys = new int [adjacentEdge.size()];
+	 		for(int i=0, i<keys.length; i++){
+	 			Edge temp = adjacentEdge.get(i);
+	 			keys[i] = temp.id;
+	 		}
+	 		return keys;
+	 	}
+
 	 	@Override 
 	 	public String toString() {
 	 		StringBuilder sb = new StringBuilder();

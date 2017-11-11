@@ -48,6 +48,15 @@ public class Edge {
 		}
 		return false;
 	}
+	//given a vertex find another
+	public Vertex getAnother(Vertex v){
+		if(contains(v)){
+			if(this.v1==v) 
+				return this.v2;
+			else 
+				return this.v1;
+		}
+	}
 	//print the edge
 	@Override 
 	public String toString() {=
