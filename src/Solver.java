@@ -5,12 +5,47 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+
+
 public class Solver {
 	
 	
 	
 	public static void main(String[] args) {
-		Graph g = parseFile(args[0]);
+		
+		//CLi Definition Stage
+		Options options = new Options();
+		options.addOption("inst",true,"define the graph file to run algorithm");
+		options.addOption("alg",true,"define the algorithm to solve problem");
+		options.addOption("time",true,"cutoff time in seconds");
+		options.addOption("seed",true,"random seed");
+		
+		//CLi Parse Stage
+		CommandLineParser parser = new DefaultParser();
+		CommandLine cmd = null;
+		try {
+			cmd = parser.parse(options, args);
+		} catch (ParseException exp) {
+			System.err.println("Parsing failed. Reason: "+exp.getMessage());
+		}
+		//begin Interrogation Stage
+		String file = cmd.getOptionValue("inst");
+		if(file == null) {
+			System.err.println("error file name format");
+		}
+		String cutOffTime = cmd.getOptionValue("time");
+		String alg = cmd.getOptionValue("alg");
+		String seed = cmd.getOptionValue("seed");
+		
+		//System.out.println("cutoff time "+cutOffTime+" alg "+alg+" seed: "+seed);  
+		 
+		//add test code here to run different algorithm
+		Graph g = parseFile(file);
 		System.out.println(g.getVertex(1).toString());
 		System.out.println(g.getVertex(5).toString());
 		
@@ -59,8 +94,9 @@ public class Solver {
 					currentAdjEdgeList.add(g.edgeMap.get(edgeId));
 					}
 				}
-				currentIndex++;
-				if(currentIndex==size+1) break;
+			currentVertex.degree = currentAdjList.size();
+			currentIndex++;
+			if(currentIndex==size+1) break;
 		}
 		return g;	
 	}
