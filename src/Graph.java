@@ -1,27 +1,42 @@
+
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.ArrayList;
 
+
 public class Graph {
-	public List<Vertex> VertexList;
-	//maybe another boolean array to denote visited
-	//add data structure as you need
+	public List<Vertex> vertexList;
+	 	//maybe another boolean array to denote visited
+	 	//add data structure as you need
+	public Map<Integer,Edge> edgeMap;
+	public boolean[] vertexCovered;//should be vertexUsed
+	public int coveredEdgeSize = 0;
+	 
 	
 	public Graph(int initSize) {
-		VertexList = new ArrayList<>(initSize+1);
-		for(int i = 0;i<initSize+1;i++) {
-			VertexList.add(new Vertex(i));
-		}
-	}
-	
+	 		vertexList = new ArrayList<>(initSize+1);
+	 		for(int i = 0;i<initSize+1;i++) {
+	 			vertexList.add(new Vertex(i));
+	 		}
+	 		//don't initialize Edge here because we can initialize with a initial size later.
+	 		
+	 	}
+	 	
 	public Graph() {
-		VertexList = new ArrayList<>();
-	}
-	
+	 		vertexList = new ArrayList<>();
+	 		edgeMap = new HashMap<>();
+	 	}
+	 	
 	public int size() {
-		return VertexList.size()-1;
-	}
-	
+	 		return vertexList.size()-1;
+	 	}
+	 	
 	public Vertex getVertex(int i) {
-		return this.VertexList.get(i);
+	 		return this.vertexList.get(i);
+	 	}
+	
+	public Edge getEdge(int id) {
+		return this.edgeMap.get(id);
 	}
 }
