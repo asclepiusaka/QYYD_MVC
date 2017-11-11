@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 public class Vertex {
 	//private static int id = 0;
-	 	private int myId;
+	 	public int myId;
 	 	private List<Vertex> adjacentVertex;
 	 	private List<Edge> adjacentEdge;
 	 	

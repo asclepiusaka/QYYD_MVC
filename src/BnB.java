@@ -1,3 +1,9 @@
+
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Stack;
 class BnB{
 	private int upperBound;
 	private int lowerBound;
@@ -19,7 +25,7 @@ class BnB{
 		// optimalSize = Integer.MAX_VALUE;
 	}
 
-	public void checkTime(){
+	public boolean checkTime(){
 		return System.currentTimeMillis()>=end;
 	}
 
@@ -28,7 +34,7 @@ class BnB{
 	}
 
 	public int DFS(int index){
-		if(checkTime){
+		if(checkTime()){
 			return 0;
 		}
 		if(vertexCover()){
@@ -64,7 +70,7 @@ class BnB{
 						}
 						//prune vertices
 						Vertex another = temp.getAnother(currentChoice);//get adjacent vertex of this edge "temp"
-						if(!G.vertexCovered[another.id]){
+						if(!G.vertexCovered[another.myId]){
 							int[] keysAnother = another.getEdgeKeys();//get all the edges' keys of vertex "another"
 							if(keysAnother.length>0){
 								boolean tempBoolean = true;
@@ -72,8 +78,8 @@ class BnB{
 									Edge tempAnother = G.edgeMap.get(keyAnother);//find correspond edge in HashMap by keyAnother
 									tempBoolean = tempBoolean && tempAnother.covered;
 								}
-								G.vertexCovered[another.id] = tempBoolean;
-								if(tempBoolean) vertexStack.push(another.id);
+								G.vertexCovered[another.myId] = tempBoolean;
+								if(tempBoolean) vertexStack.push(another.myId);
 							}
 						}
 					}

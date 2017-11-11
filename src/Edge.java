@@ -3,7 +3,7 @@ public class Edge {
 	
 	private Vertex v1;
 	private Vertex v2;
-	private int id;
+	public int id;
 	public boolean covered;
 	//edge constructor by vertex
 	public Edge(Vertex v1, Vertex v2) {
@@ -56,6 +56,7 @@ public class Edge {
 			else 
 				return this.v1;
 		}
+		return null;
 	}
 	//print the edge
 	@Override 
