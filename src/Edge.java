@@ -4,11 +4,13 @@ public class Edge {
 	private Vertex v1;
 	private Vertex v2;
 	private int id;
+	public boolean covered;
 	//edge constructor by vertex
 	public Edge(Vertex v1, Vertex v2) {
 		this.id = Solver.getEdgeIndex(v1.getId(), v2.getId());
 		this.v1=v1;
 		this.v2=v2;
+		this.covered = false;
 	}
 	
 	//edge constructor by edge

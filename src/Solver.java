@@ -43,22 +43,25 @@ public class Solver {
 			List<Vertex> currentAdjList = currentVertex.getAdjVertexList();
 			List<Edge> currentAdjEdgeList = currentVertex.getAdjEdgeList();
 			String line = sc.nextLine();
-			String[] vertexs = line.trim().split("\\s+");			
-			for(String adjVertexStr:vertexs) {
-				//the index of the other Vertex
-				int adjIndex = Integer.parseInt(adjVertexStr);
-				//add it to current adjList;
-				Vertex adjVertex = g.getVertex(adjIndex);
-				currentAdjList.add(adjVertex);
-				//check the 'suppose to be' id of this edge;
-				int edgeId =getEdgeIndex(currentIndex, adjIndex);
-				if(!g.edgeMap.containsKey(edgeId)) {//create new edge if not already exist;
-					g.edgeMap.put(edgeId, new Edge(currentVertex,adjVertex));
+			if(!line.isEmpty()) {
+				String[] vertexs = line.trim().split("\\s+");			
+				for(String adjVertexStr:vertexs) {
+					//the index of the other Vertex
+					int adjIndex = Integer.parseInt(adjVertexStr);
+					//add it to current adjList;
+					Vertex adjVertex = g.getVertex(adjIndex);
+					currentAdjList.add(adjVertex);
+				//	check the 'suppose to be' id of this edge;
+					int edgeId =getEdgeIndex(currentIndex, adjIndex);
+					if(!g.edgeMap.containsKey(edgeId)) {//create new edge if not already exist;
+						g.edgeMap.put(edgeId, new Edge(currentVertex,adjVertex));
+					}
+					currentAdjEdgeList.add(g.edgeMap.get(edgeId));
+					}
 				}
-				currentAdjEdgeList.add(g.edgeMap.get(edgeId));
-			}
-		currentIndex++;
+				currentIndex++;
+				if(currentIndex==size+1) break;
 		}
 		return g;	
-		}
+	}
 }
