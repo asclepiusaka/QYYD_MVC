@@ -1,20 +1,28 @@
-package big;
 
 public class Edge {
-	Vertex v1;
-	Vertex v2;
+	
+	private Vertex v1;
+	private Vertex v2;
+	private int id;
 	//edge constructor by vertex
 	public Edge(Vertex v1, Vertex v2) {
+		this.id = Solver.getEdgeIndex(v1.getId(), v2.getId());
 		this.v1=v1;
 		this.v2=v2;
 	}
+	
 	//edge constructor by edge
-	public Edge(Edge e) {//current use address pass not copy a new one
+	//should not be used
+	/*
+	 public Edge(Edge e) {//current use address pass not copy a new one
+	 
 		//this.v1=new Vertex(e.v1.getId());
 		//this.v2=new Vertex(e.v2.getId());
 		this.v1=e.v1;
 		this.v2=e.v2;
 	}
+	*/
+	
 	//check if edge constains given vertex v
 	public boolean contains(Vertex v) {
 		if(v1.getId()==v.getId()||v2.getId()==v.getId()) {
@@ -33,12 +41,13 @@ public class Edge {
 	public boolean equals(Edge e) {
 		if(this==e)
 			return true;
-		if((this.v1.equals((Vertex)e.v1)&&this.v2.equals((Vertex)e.v2))||(this.v1.equals((Vertex)e.v2)&&this.v2.equals((Vertex)e.v1)))
+		if(this.id == e.id) {
 			return true;
+		}
 		return false;
 	}
 	//print the edge
 	public String toString() {
-		return("Between vertex:"+v1.getId()+"and vertex:"+v2.getId());
+		return("Between vertex: "+v1.getId()+" and vertex: "+v2.getId());
 	}
 }
