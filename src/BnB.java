@@ -8,7 +8,7 @@ class BnB{
 	private int upperBound;
 	private int lowerBound;
 	private long start, end;
-	private ArrayList<Vertex> optimalSolution;
+	static public ArrayList<Vertex> optimalSolution;
 	private ArrayList<Vertex> currentSolution;
 	// private int optimalSize;
 	private Graph G;
@@ -34,14 +34,35 @@ class BnB{
 	}
 
 	public int DFS(int index){
+		// System.out.println("hello "+index);
+		lowerBound++;
 		if(checkTime()){
+			lowerBound--;
 			return 0;
 		}
 		if(vertexCover()){
+			// System.out.println("we find a current solution!");
+			// for(int i=0; i<currentSolution.size(); i++){
+			// 	System.out.println(currentSolution.get(i).myId);
+			// }
 			if(currentSolution.size() < upperBound){
-				optimalSolution = currentSolution;
+
+				optimalSolution = new ArrayList<Vertex>(currentSolution.size());
+				for(Vertex v:currentSolution){
+					optimalSolution.add(new Vertex(v));
+				}
 				upperBound = optimalSolution.size();
+				System.out.println("we find a solution!");
+				for(int i=0; i<optimalSolution.size(); i++){
+					System.out.println(optimalSolution.get(i).myId);
+				}
 			}
+			lowerBound--;
+			return 0;
+		}
+		if(lowerBound>upperBound)
+		{
+			lowerBound--;
 			return 0;
 		}
 
@@ -49,7 +70,7 @@ class BnB{
 		for(int i=index+1; i<G.vertexCovered.length; i++){//choose a vertex not pruned or selected
 			if(!G.vertexCovered[i]){
 				index = i;
-
+				// System.out.println("choose "+index);
 				//make a stack to store changed vertices and edges
 				Stack<Integer> vertexStack = new Stack<Integer>();
 				Stack<Integer> edgeStack = new Stack<Integer>();
@@ -67,6 +88,7 @@ class BnB{
 						if(!temp.covered){
 							temp.covered = true;
 							edgeStack.push(temp.id);
+							G.coveredEdgeSize++;
 						}
 						//prune vertices
 						Vertex another = temp.getAnother(currentChoice);//get adjacent vertex of this edge "temp"
@@ -93,11 +115,18 @@ class BnB{
 				while(!edgeStack.empty()){
 					Edge tempEdge = G.edgeMap.get(edgeStack.pop());
 					tempEdge.covered = false;//change to key later
+					G.coveredEdgeSize--;
 				}
 				//restore current solution
 				currentSolution.remove(currentSolution.size()-1);
 			}
 		}
+		// System.out.println("current optimal solution!");
+		// 		for(int i=0; i<optimalSolution.size(); i++){
+		// 			System.out.println(optimalSolution.get(i).myId);
+		// 		}
+		System.out.println("lowerBound " + lowerBound);
+		lowerBound--;
 		return 1;
 
 	}

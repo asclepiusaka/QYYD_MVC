@@ -17,6 +17,10 @@ public class Vertex {
 	 		this.myId = id;
 	 		this.adjacentVertex=adj;
 	 	}
+
+	 	public Vertex(Vertex v){
+	 		this.myId = v.myId;
+	 	}
 	 	
 	 	public void addAdjVertex(Vertex v) {
 	 		this.adjacentVertex.add(v);

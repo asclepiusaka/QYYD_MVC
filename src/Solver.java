@@ -11,10 +11,15 @@ public class Solver {
 	
 	public static void main(String[] args) {
 		Graph g = parseFile(args[0]);
-		System.out.println(g.getVertex(1).toString());
-		System.out.println(g.getVertex(5).toString());
-
-		
+		// System.out.println(g.getVertex(1).toString());
+		// System.out.println(g.getVertex(5).toString());
+		BnB BnBsolve = new BnB(30,g);
+		BnBsolve.DFS(0);
+		System.out.println("we find the optimal solution!");
+		System.out.println(BnBsolve.optimalSolution.size());
+		// for(int i=0; i<BnBsolve.optimalSolution.size(); i++){
+		// 	System.out.println(BnBsolve.optimalSolution.get(i).myId);
+		// }
 	}
 	
 	public static int getEdgeIndex(int vertexId1,int vertexId2) {
