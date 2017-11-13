@@ -3,11 +3,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
 class BnB{
 	private int upperBound;
 	private int lowerBound;
-	private long start, end;
+	public long start, end;
 	static public ArrayList<Vertex> optimalSolution;
 	private ArrayList<Vertex> currentSolution;
 	// private int optimalSize;
@@ -15,6 +16,7 @@ class BnB{
 
 
 	BnB(long interval, Graph g){
+		Collections.sort(g.vertexList);
 		start = System.currentTimeMillis();
 		end = start + interval * 1000;
 		upperBound = Integer.MAX_VALUE;

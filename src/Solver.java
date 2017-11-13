@@ -46,7 +46,6 @@ public class Solver {
 		 
 		//add test code here to run different algorithm
 		Graph g = parseFile(file);
-		Collections.sort(g.vertexList);
 //		System.out.println(g.getVertex(1).toString());
 //		System.out.println(g.getVertex(2).toString());
 
@@ -55,6 +54,7 @@ public class Solver {
 		BnBsolve.DFS(-1);
 		System.out.println("we find the optimal solution!");
 		System.out.println(BnBsolve.optimalSolution.size());
+		System.out.println("used " + (System.currentTimeMillis()-BnBsolve.start)/1000 + "seconds");
 		
 	}
 	
