@@ -2,6 +2,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collections;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -14,17 +17,15 @@ import org.apache.commons.cli.ParseException;
 
 
 public class Solver {
-	
-	
-	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		
 		//CLi Definition Stage
 		Options options = new Options();
 		options.addOption("inst",true,"define the graph file to run algorithm");
 		options.addOption("alg",true,"define the algorithm to solve problem");
 		options.addOption("time",true,"cutoff time in seconds");
 		options.addOption("seed",true,"random seed");
-		
+
 		//CLi Parse Stage
 		CommandLineParser parser = new DefaultParser();
 		CommandLine cmd = null;
@@ -59,11 +60,14 @@ public class Solver {
 		else if(alg.equals("Approx")) {
 			Approx.solve(g);
 		}
-		
+		else if(alg.equals("LS1")) {
+			String[] temp = file.split("\\.|/");
+//			System.out.println(temp[3]);
+			HC_MVC.HC(g,temp[3]);
+		}
 		else {
 			System.err.println("error algorithm name format");
 		}
-		
 	}
 	
 	public static int getEdgeIndex(int vertexId1,int vertexId2) {

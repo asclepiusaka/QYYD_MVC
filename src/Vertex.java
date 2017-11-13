@@ -7,6 +7,7 @@ public class Vertex implements Comparable<Vertex> {
 	 	private List<Vertex> adjacentVertex;
 	 	private List<Edge> adjacentEdge;
 	 	public int degree;
+	 	public boolean covered;
 	 	
 	 	public Vertex(int id) {
 	 		this.myId = id;
@@ -44,6 +45,10 @@ public class Vertex implements Comparable<Vertex> {
 	 	public int getId() {
 	 		return this.myId;
 	 	}
+
+	 	public int getDegree(){ // YHY
+	 		return this.degree;
+	 	}  //YHY
 	 	
 	 	public int[] getEdgeKeys(){
 	 		int[] keys = new int [adjacentEdge.size()];

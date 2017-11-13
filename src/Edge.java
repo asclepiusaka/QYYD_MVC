@@ -58,6 +58,15 @@ public class Edge {
 		}
 		return null;
 	}
+
+	public Vertex getV1(){ //YHY
+		return this.v1;
+	}
+
+	public Vertex getV2(){  //YHY
+		return this.v2;
+	}
+	
 	//print the edge
 	@Override 
 	public String toString() {
