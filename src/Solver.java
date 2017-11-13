@@ -46,8 +46,7 @@ public class Solver {
 		 
 		//add test code here to run different algorithm
 		Graph g = parseFile(file);
-		System.out.println(g.getVertex(1).toString());
-		System.out.println(g.getVertex(5).toString());
+		Approx.solve(g);
 		
 	}
 	
