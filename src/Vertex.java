@@ -6,12 +6,15 @@ public class Vertex {
 	 	public int myId;
 	 	private List<Vertex> adjacentVertex;
 	 	private List<Edge> adjacentEdge;
+	 	public int degree;
 	 	
 	 	public Vertex(int id) {
 	 		this.myId = id;
 	 		this.adjacentVertex = new ArrayList<Vertex>();
 	 		this.adjacentEdge = new ArrayList<Edge>();
 	 	}
+	 	
+	 	
 	 	
 	 	public Vertex(int id,List<Vertex> adj) {
 	 		this.myId = id;
