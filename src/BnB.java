@@ -53,9 +53,10 @@ class BnB{
 				}
 				upperBound = optimalSolution.size();
 				System.out.println("we find a solution!");
-				for(int i=0; i<optimalSolution.size(); i++){
-					System.out.println(optimalSolution.get(i).myId);
-				}
+				System.out.println(optimalSolution.size());
+//				for(int i=0; i<optimalSolution.size(); i++){
+//					System.out.println(optimalSolution.get(i).myId);
+//				}
 			}
 			lowerBound--;
 			return 0;
@@ -68,7 +69,7 @@ class BnB{
 
 		// int index;
 		for(int i=index+1; i<G.vertexCovered.length; i++){//choose a vertex not pruned or selected
-			if(!G.vertexCovered[i]){
+			if(!G.vertexCovered[G.getVertex(i).myId]){
 				index = i;
 				// System.out.println("choose "+index);
 				//make a stack to store changed vertices and edges
@@ -77,8 +78,8 @@ class BnB{
 
 				Vertex currentChoice = G.getVertex(index);//the vertex we choose to add in solution
 				currentSolution.add(currentChoice);
-				G.vertexCovered[index] = true;//first change
-				vertexStack.push(index);
+				G.vertexCovered[G.getVertex(i).myId] = true;//first change
+				vertexStack.push(G.getVertex(i).myId);
 
 				int[] keys = currentChoice.getEdgeKeys();//get all edges' keys linked to this vertex 
 				if(keys.length>0){//check whether this vertex has at least one edge
@@ -125,7 +126,7 @@ class BnB{
 		// 		for(int i=0; i<optimalSolution.size(); i++){
 		// 			System.out.println(optimalSolution.get(i).myId);
 		// 		}
-		System.out.println("lowerBound " + lowerBound);
+//		System.out.println("lowerBound " + lowerBound);
 		lowerBound--;
 		return 1;
 

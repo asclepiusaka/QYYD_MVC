@@ -1,7 +1,7 @@
 
 import java.util.List;
 import java.util.ArrayList;
-public class Vertex {
+public class Vertex implements Comparable<Vertex> {
 	//private static int id = 0;
 	 	public int myId;
 	 	private List<Vertex> adjacentVertex;
@@ -52,6 +52,12 @@ public class Vertex {
 	 			keys[i] = temp.id;
 	 		}
 	 		return keys;
+	 	}
+	 	
+	 	@Override
+	 	public int compareTo(Vertex v) {
+	 		int comparing = v.degree;
+	 		return comparing-this.degree;
 	 	}
 
 	 	@Override 
