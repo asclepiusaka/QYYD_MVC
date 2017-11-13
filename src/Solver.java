@@ -46,15 +46,23 @@ public class Solver {
 		 
 		//add test code here to run different algorithm
 		Graph g = parseFile(file);
-//		System.out.println(g.getVertex(1).toString());
-//		System.out.println(g.getVertex(2).toString());
-
-		BnB BnBsolve = new BnB(600,g);
+		if(alg==null) {
+			System.err.println("no algorithm detected");
+		}
+		else if(alg.equals("BnB")) {
+			BnB BnBsolve = new BnB(600,g);
+			BnBsolve.DFS(-1);
+			System.out.println("we find the optimal solution!");
+			System.out.println(BnBsolve.optimalSolution.size());
+			System.out.println("used " + (System.currentTimeMillis()-BnBsolve.start)/1000 + "seconds");
+		}
+		else if(alg.equals("Approx")) {
+			Approx.solve(g);
+		}
 		
-		BnBsolve.DFS(-1);
-		System.out.println("we find the optimal solution!");
-		System.out.println(BnBsolve.optimalSolution.size());
-		System.out.println("used " + (System.currentTimeMillis()-BnBsolve.start)/1000 + "seconds");
+		else {
+			System.err.println("error algorithm name format");
+		}
 		
 	}
 	
