@@ -1,6 +1,10 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -13,10 +17,7 @@ import org.apache.commons.cli.ParseException;
 
 
 public class Solver {
-	
-	
-	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		//CLi Definition Stage
 		Options options = new Options();
@@ -24,7 +25,7 @@ public class Solver {
 		options.addOption("alg",true,"define the algorithm to solve problem");
 		options.addOption("time",true,"cutoff time in seconds");
 		options.addOption("seed",true,"random seed");
-		
+
 		//CLi Parse Stage
 		CommandLineParser parser = new DefaultParser();
 		CommandLine cmd = null;
@@ -46,8 +47,27 @@ public class Solver {
 		 
 		//add test code here to run different algorithm
 		Graph g = parseFile(file);
-		Approx.solve(g);
-		
+		if(alg==null) {
+			System.err.println("no algorithm detected");
+		}
+		else if(alg.equals("BnB")) {
+			BnB BnBsolve = new BnB(600,g);
+			BnBsolve.DFS(-1);
+			System.out.println("we find the optimal solution!");
+			System.out.println(BnBsolve.optimalSolution.size());
+			System.out.println("used " + (System.currentTimeMillis()-BnBsolve.start)/1000 + "seconds");
+		}
+		else if(alg.equals("Approx")) {
+			Approx.solve(g);
+		}
+		else if(alg.equals("LS1")) {
+			String[] temp = file.split("\\.|/");
+//			System.out.println(temp[3]);
+			HC_MVC.HC(g,temp[3]);
+		}
+		else {
+			System.err.println("error algorithm name format");
+		}
 	}
 	
 	public static int getEdgeIndex(int vertexId1,int vertexId2) {
