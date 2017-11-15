@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
+
 class BnB{
 	private int upperBound;
 	private int lowerBound;
