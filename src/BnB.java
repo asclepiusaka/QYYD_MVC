@@ -1,11 +1,13 @@
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
+
 class BnB{
 	private int upperBound;
 	private int lowerBound;
@@ -74,6 +76,8 @@ class BnB{
 		}
 //		System.out.println(twoApprox()+currentSolution.size());
 		if(twoApprox()+currentSolution.size()>=upperBound) {
+		//if((LBUtil.LPsolve(G)+currentSolution.size())>=upperBound) {
+			//System.out.println("lower bound: " + (LBUtil.LPsolve(G)+currentSolution.size())+" larger than "+upperBound);
 //			System.out.println(twoApprox()+currentSolution.size());
 //			System.out.println("yeah!");
 			lowerBound--;
@@ -204,7 +208,7 @@ class BnB{
 	int twoApprox() {
 //		System.out.println("approx");
 		int choosedEdgeSize = 0;
-		Iterator it = G.edgeMap.entrySet().iterator();
+		Iterator<Map.Entry<Integer, Edge>> it = G.edgeMap.entrySet().iterator();
 		Stack<Integer> tempEdgeStack = new Stack<Integer>();
 		int tempsize = G.coveredEdgeSize;
 //		System.out.println(it.hasNext());

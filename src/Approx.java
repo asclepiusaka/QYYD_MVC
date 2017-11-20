@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Approx {
 	public static void solve(Graph graph) {
+		long start = System.currentTimeMillis();
 		//sort it first
 		graph.vertexCovered = new boolean[graph.vertexList.size()];
 		List<Vertex> sortedList = new ArrayList<>(graph.vertexList.subList(1, graph.vertexList.size()));
@@ -50,10 +51,10 @@ public class Approx {
 				if(graph.coveredEdgeSize == graph.edgeMap.size()) {
 					break;
 				}
-				
 			}
-			
 		}
-	System.out.println("graph "+VertexCoverSol.size());
+		long end = System.currentTimeMillis();
+		int time =(int)((end-start)/1e3);
+		System.out.println("Vertex Cover Size:"+VertexCoverSol.size()+" time:"+time);
 	}
 }
