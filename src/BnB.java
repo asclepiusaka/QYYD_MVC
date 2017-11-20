@@ -75,9 +75,9 @@ class BnB{
 			return 0;
 		}
 //		System.out.println(twoApprox()+currentSolution.size());
-		//if(twoApprox()+currentSolution.size()>=upperBound) {
-		if((LBUtil.LPsolve(G)+currentSolution.size())>=upperBound) {
-			System.out.println("lower bound: " + (LBUtil.LPsolve(G)+currentSolution.size())+" larger than "+upperBound);
+		if(twoApprox()+currentSolution.size()>=upperBound) {
+		//if((LBUtil.LPsolve(G)+currentSolution.size())>=upperBound) {
+			//System.out.println("lower bound: " + (LBUtil.LPsolve(G)+currentSolution.size())+" larger than "+upperBound);
 //			System.out.println(twoApprox()+currentSolution.size());
 //			System.out.println("yeah!");
 			lowerBound--;

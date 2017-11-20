@@ -51,7 +51,7 @@ public class Solver {
 			System.err.println("no algorithm detected");
 		}
 		else if(alg.equals("BnB")) {
-			BnB BnBsolve = new BnB(600,g);
+			BnB BnBsolve = new BnB(3600,g);
 			BnBsolve.DFS(-1);
 			System.out.println("we find the optimal solution!");
 			System.out.println(BnBsolve.optimalSolution.size());
@@ -61,9 +61,12 @@ public class Solver {
 			Approx.solve(g);
 		}
 		else if(alg.equals("LS1")) {
-			String[] temp = file.split("\\.|/");
-//			System.out.println(temp[3]);
-			HC_MVC.HC(g,temp[3]);
+			LocalSearch lsSolver = new LocalSearch(Integer.parseInt(cutOffTime),g,Integer.parseInt(seed));
+			System.out.println(lsSolver.HCsolve());
+		}
+		else if(alg.equals("LS2")) {
+			LocalSearch lsSolver = new LocalSearch(Integer.parseInt(cutOffTime),g,Integer.parseInt(seed));
+			System.out.println(lsSolver.SAsolve());
 		}
 		else {
 			System.err.println("error algorithm name format");
