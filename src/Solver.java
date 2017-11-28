@@ -51,7 +51,7 @@ public class Solver {
 			System.err.println("no algorithm detected");
 		}
 		else if(alg.equals("BnB")) {
-			BnB BnBsolve = new BnB(3600,g);
+			BnBClone BnBsolve = new BnBClone(600,g);
 			BnBsolve.DFS(-1);
 			System.out.println("we find the optimal solution!");
 			System.out.println(BnBsolve.optimalSolution.size());

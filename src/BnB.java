@@ -69,6 +69,7 @@ class BnB{
 			lowerBound--;
 			return 0;
 		}
+		
 		if(lowerBound>upperBound)
 		{
 			lowerBound--;
@@ -90,8 +91,8 @@ class BnB{
 		for(int i=index+1; i<G.vertexCovered.length-1; i++){//choose a vertex not pruned or selected
 			if(!G.vertexCovered[G.getVertex(i).myId]){
 				index = i;
-				
-//				 System.out.println("choose "+index);
+				if(lowerBound==1)
+				 	System.out.println("the first chosen node is "+index);
 				//make a stack to store changed vertices and edges
 				Stack<Integer> vertexStack = new Stack<Integer>();
 				Stack<Integer> edgeStack = new Stack<Integer>();
