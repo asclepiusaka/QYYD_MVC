@@ -62,14 +62,19 @@ public class Vertex implements Comparable<Vertex> {
 	 	@Override
 	 	public int compareTo(Vertex v) {
 	 		int comparing = v.degree;
-	 		return comparing-this.degree;
+	 		if(comparing-this.degree!=0)
+	 			return comparing-this.degree;
+	 		else {
+	 			//breaking tie.
+	 			return Integer.compare(this.myId,v.myId);
+	 		}
 	 	}
 
 	 	@Override 
 	 	public String toString() {
 	 		StringBuilder sb = new StringBuilder();
 	 		sb.append(this.myId);
-	 		sb.append(" addjacent vertex:");
+/*	 		sb.append(" addjacent vertex:");
 	 		for(Vertex v: adjacentVertex) {
 	 			sb.append(" "+v.getId());
 	 		}
@@ -77,6 +82,7 @@ public class Vertex implements Comparable<Vertex> {
 	 		for(Edge e: adjacentEdge) {
 	 			sb.append(" "+e);
 	 		}
+	 		*/
 	 		return sb.toString();
 	 	}
 }
