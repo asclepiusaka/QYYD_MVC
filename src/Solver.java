@@ -51,11 +51,13 @@ public class Solver {
 			System.err.println("no algorithm detected");
 		}
 		else if(alg.equals("BnB")) {
-			BnBClone BnBsolve = new BnBClone(600,g);
+			String[] temp = file.split("\\.|/");
+			BnBClone BnBsolve = new BnBClone(600,g,temp[3]);
 			BnBsolve.DFS(-1);
 			System.out.println("we find the optimal solution!");
 			System.out.println(BnBsolve.optimalSolution.size());
 			System.out.println("used " + (System.currentTimeMillis()-BnBsolve.start)/1000 + "seconds");
+			BnBsolve.printSolution();
 		}
 		else if(alg.equals("Approx")) {
 			Approx.solve(g);
