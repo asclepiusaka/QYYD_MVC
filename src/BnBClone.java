@@ -4,9 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,23 +19,14 @@ class BnBClone{
 	// private int optimalSize;
 	private Graph G;
 	private TreeSet<Vertex> candidateVertexSet;
-
-    private static String currDir = System.getProperty("user.dir");
-    private static String hcOutFilePath;
-    private static String hcTraceFilePath;
-    private static PrintWriter hcOut;
-    private static PrintWriter hcTrace;
+	SolutionRecorder recorder;
 
 
-	BnBClone(long interval, Graph g, String dataname) throws IOException{
 
-        hcOutFilePath = currDir + "/output/" + dataname + "_BnB_600_0.sol";
-        hcTraceFilePath = currDir + "/output/" + dataname + "_BnB_600_0.trace";
 
-        hcOut = new PrintWriter(hcOutFilePath);
-        hcTrace = new PrintWriter(hcTraceFilePath);
-        
-        
+	BnBClone(long interval, Graph g)  {
+
+        this.recorder = SolutionRecorder.getInstance();
 		candidateVertexSet = new TreeSet<Vertex>(g.vertexList.subList(1, g.vertexList.size()));
 		start = System.currentTimeMillis();
 		end = start + interval * 1000;
@@ -51,17 +39,7 @@ class BnBClone{
 		//System.out.println("size of set: "+candidateVertexSet.size());
 	}
 	
-	public void printSolution() {
-		hcOut.printf("%d%n", optimalSolution.size()); //write .sol file
-        for(int i =0; i < optimalSolution.size(); i++){
-            hcOut.printf("%s",optimalSolution.get(i).getId());
-            if(i != optimalSolution.size()-1){
-                hcOut.printf(",");
-            }
-        }
-        hcOut.close();
-        hcTrace.close();
-	}
+	
 	public boolean checkTime(){
 		return System.currentTimeMillis()>=end;
 	}
@@ -91,7 +69,7 @@ class BnBClone{
 				upperBound = optimalSolution.size();
 				System.out.println("we find a solution! time: "+ (System.currentTimeMillis()-start));
 				System.out.println(optimalSolution.size());
-				hcTrace.printf("%.3f,%d%n", (double)(System.currentTimeMillis()-start)/1000, optimalSolution.size());  //print the solution for .trace file
+				recorder.printTrace("%.3f,%d%n", (double)(System.currentTimeMillis()-start)/1000, optimalSolution.size());  //print the solution for .trace file
 //				for(int i=0; i<optimalSolution.size(); i++){
 //					System.out.println(optimalSolution.get(i).myId);
 //				}

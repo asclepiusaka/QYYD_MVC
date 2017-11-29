@@ -12,13 +12,16 @@ public class LocalSearch {
 	private long cutoffTime;
 	private long start;
 	private Random r;
+	private int currentCoverSize = 0;
+	private SolutionRecorder recorder;
 	
 	public LocalSearch(long cutoff,Graph graph,int seed) {
 		this.cutoffTime = cutoff;
 		this.g = graph;
 		this.start = System.currentTimeMillis();
 		r = new Random(seed);
-		
+		this.currentCoverSize = g.vertexList.size()-1;
+		this.recorder = SolutionRecorder.getInstance();
 	}
 	
 	
@@ -60,20 +63,26 @@ public class LocalSearch {
 				}
 				if(deleteable) {
 					g.vertexCovered[toRemove.myId] = false;
+					currentCoverSize--;
+					recorder.printTrace("%.3f,%d%n", (double)(System.currentTimeMillis()-start)/1000, currentCoverSize);
 				}
 			}
 		}
-		int result = 0;
+		List<Vertex> optSolution = new ArrayList<Vertex>(currentCoverSize);
 		for(int i=1;i<g.vertexCovered.length;i++) {
 			if(g.vertexCovered[i]==true) {
-				result++;
+				optSolution.add(g.vertexList.get(i));
 			}
 		}
-		return result;
+		
+		recorder.printSolution(optSolution);
+		
+		return currentCoverSize;
 	}
 	
 	public int SAsolve() {
 		//set all vertex as covered at the very beginning
+		int bestCoverSize = this.currentCoverSize;
 		for(int i=0;i<g.vertexCovered.length;i++) {
 			g.vertexCovered[i] = true;
 		}
@@ -94,24 +103,34 @@ public class LocalSearch {
 				}
 				if(deleteable) {
 					g.vertexCovered[vertex.myId] = false;
+					currentCoverSize--;
+					if(currentCoverSize<bestCoverSize) {
+						bestCoverSize = currentCoverSize;
+						recorder.printTrace("%.3f,%d%n", (double)(System.currentTimeMillis()-start)/1000, currentCoverSize);
+					}
 				}
-				//else doing nothing.
-			}else {
+				//else doing nothing
+			}else {//then we decide whether to add a vertex to current solution set.
 				double p = Math.exp(-(1/T));
 				if(p>r.nextDouble()) {
+					currentCoverSize++;
 					g.vertexCovered[index] = true;
 				}//else doing nothing;
 			}
 			T *= A;
 		}
 		
+		List<Vertex> optSolution = new ArrayList<Vertex>(currentCoverSize);
 		int result = 0;
 		for(int i=1;i<g.vertexCovered.length;i++) {
 			if(g.vertexCovered[i]==true) {
 				result++;
+				optSolution.add(g.vertexList.get(i));
 			}
 		}
-		System.out.println("current Temp "+T);
+		
+		recorder.printSolution(optSolution);
+		//System.out.println("current Temp "+T);
 		return result;
 		
 		

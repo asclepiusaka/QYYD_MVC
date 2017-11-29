@@ -42,22 +42,25 @@ public class Solver {
 		String cutOffTime = cmd.getOptionValue("time");
 		String alg = cmd.getOptionValue("alg");
 		String seed = cmd.getOptionValue("seed");
+		SolutionRecorder recorder = SolutionRecorder.getInstance();
+		recorder.configure(file, alg, seed, cutOffTime);
+		
 		
 		//System.out.println("cutoff time "+cutOffTime+" alg "+alg+" seed: "+seed);  
 		 
 		//add test code here to run different algorithm
 		Graph g = parseFile(file);
 		if(alg==null) {
-			System.err.println("no algorithm detected");
+			System.err.println("no algorithm detected, please choose an algorithm!");
 		}
 		else if(alg.equals("BnB")) {
 			String[] temp = file.split("\\.|/");
-			BnBClone BnBsolve = new BnBClone(600,g,temp[3]);
+			BnBClone BnBsolve = new BnBClone(Integer.parseInt(cutOffTime),g);
 			BnBsolve.DFS(-1);
 			System.out.println("we find the optimal solution!");
 			System.out.println(BnBsolve.optimalSolution.size());
 			System.out.println("used " + (System.currentTimeMillis()-BnBsolve.start)/1000 + "seconds");
-			BnBsolve.printSolution();
+			recorder.printSolution(BnBsolve.optimalSolution);
 		}
 		else if(alg.equals("Approx")) {
 			Approx.solve(g);
