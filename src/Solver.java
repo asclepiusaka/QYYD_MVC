@@ -45,7 +45,8 @@ public class Solver {
 		SolutionRecorder recorder = SolutionRecorder.getInstance();
 		recorder.configure(file, alg, seed, cutOffTime);
 		
-		
+		int seed_int = (seed==null)?1:Integer.parseInt(seed);
+		int cutOffTime_int = (cutOffTime==null)?600:Integer.parseInt(cutOffTime);
 		//System.out.println("cutoff time "+cutOffTime+" alg "+alg+" seed: "+seed);  
 		 
 		//add test code here to run different algorithm
@@ -55,7 +56,7 @@ public class Solver {
 		}
 		else if(alg.equals("BnB")) {
 			String[] temp = file.split("\\.|/");
-			BnBClone BnBsolve = new BnBClone(Integer.parseInt(cutOffTime),g);
+			BnBClone BnBsolve = new BnBClone(cutOffTime_int,g);
 			BnBsolve.DFS(-1);
 			System.out.println("we find the optimal solution!");
 			System.out.println(BnBsolve.optimalSolution.size());
@@ -66,11 +67,11 @@ public class Solver {
 			Approx.solve(g);
 		}
 		else if(alg.equals("LS1")) {
-			LocalSearch lsSolver = new LocalSearch(Integer.parseInt(cutOffTime),g,Integer.parseInt(seed));
+			LocalSearch lsSolver = new LocalSearch(cutOffTime_int,g,seed_int);
 			System.out.println(lsSolver.HCsolve());
 		}
 		else if(alg.equals("LS2")) {
-			LocalSearch lsSolver = new LocalSearch(Integer.parseInt(cutOffTime),g,Integer.parseInt(seed));
+			LocalSearch lsSolver = new LocalSearch(cutOffTime_int,g,seed_int);
 			System.out.println(lsSolver.SAsolve());
 		}
 		else {
