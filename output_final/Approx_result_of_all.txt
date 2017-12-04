@@ -1,0 +1,22 @@
+as-22july06.graph as-22july06
+Vertex Cover Size:3429 time:0
+delaunay_n10.graph delaunay_n10
+Vertex Cover Size:799 time:0
+email.graph email
+Vertex Cover Size:668 time:0
+football.graph football
+Vertex Cover Size:106 time:0
+hep-th.graph hep-th
+Vertex Cover Size:4042 time:0
+jazz.graph jazz
+Vertex Cover Size:167 time:0
+karate.graph karate
+Vertex Cover Size:15 time:0
+netscience.graph netscience
+Vertex Cover Size:899 time:0
+power.graph power
+Vertex Cover Size:2508 time:0
+star.graph star
+Vertex Cover Size:8396 time:0
+star2.graph star2
+Vertex Cover Size:5481 time:0
