@@ -1,20 +1,7 @@
 #!/bin/bash
 
-
-graphFiles=`ls ./Data/ | grep .graph`
-
-for graph in $graphFiles
+for seedN in {1..50}
 do
-	filename=`echo $graph | cut -d'.' -f1`
-	echo $graph $filename
-	java -cp "./bin:./lib/*" -Xms500m -Xss8M Solver -inst ./Data/$graph -alg Approx
-
-done
-
-for graph in $graphFiles
-do
-	filename=`echo $graph | cut -d'.' -f1`
-	echo $graph $filename
-	java -cp "./bin:./lib/*" -Xms500m -Xss8M Solver -inst ./Data/$graph -alg BnB
+	java -cp "./src:./lib/*" -Xms500m -Xss8M Solver -inst ./Data/star2.graph -alg LS2 -seed $seedN -time 120
 
 done
