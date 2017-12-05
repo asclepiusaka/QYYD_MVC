@@ -13,9 +13,9 @@ public class SolutionRecorder {
 	
 	public void configure(String filePath,String alg,String randomSeed,String cutoffTime) throws IOException {
 		String[] elements = filePath.split("\\.|/");
-		this.hcOutFilePath = this.currDir + "/" + elements[elements.length-2] + "_"+alg+"_"+cutoffTime+"_"+
+		this.hcOutFilePath = this.currDir + "/output/" + elements[elements.length-2] + "_"+alg+"_"+cutoffTime+"_"+
 				randomSeed+".sol";
-		this.hcTraceFilePath = this.currDir + "/" + elements[elements.length-2] + "_"+alg+"_"+cutoffTime+"_"+
+		this.hcTraceFilePath = this.currDir + "/output/" + elements[elements.length-2] + "_"+alg+"_"+cutoffTime+"_"+
 				randomSeed+".trace";
 		this.hcOut = new PrintWriter(this.hcOutFilePath);
         this.hcTrace = new PrintWriter(this.hcTraceFilePath);
