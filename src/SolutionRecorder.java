@@ -11,7 +11,7 @@ public class SolutionRecorder {
     private  PrintWriter hcOut;
     private  PrintWriter hcTrace;
 	
-	public void configure(String filePath,String alg,String randomSeed,String cutoffTime) throws IOException {
+	public void configure(String filePath,String alg,int randomSeed,int cutoffTime) throws IOException {
 		String[] elements = filePath.split("\\.|/");
 		this.hcOutFilePath = this.currDir + "/output/" + elements[elements.length-2] + "_"+alg+"_"+cutoffTime+"_"+
 				randomSeed+".sol";
