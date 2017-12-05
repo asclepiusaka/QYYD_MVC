@@ -43,10 +43,11 @@ public class Solver {
 		String alg = cmd.getOptionValue("alg");
 		String seed = cmd.getOptionValue("seed");
 		SolutionRecorder recorder = SolutionRecorder.getInstance();
-		recorder.configure(file, alg, seed, cutOffTime);
+		
 		
 		int seed_int = (seed==null)?1:Integer.parseInt(seed);
 		int cutOffTime_int = (cutOffTime==null)?600:Integer.parseInt(cutOffTime);
+		recorder.configure(file, alg, seed_int, cutOffTime_int);
 		//System.out.println("cutoff time "+cutOffTime+" alg "+alg+" seed: "+seed);  
 		 
 		//add test code here to run different algorithm

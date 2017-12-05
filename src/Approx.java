@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //@author: saka
 //inside this class is the heuristic solution
@@ -56,5 +57,8 @@ public class Approx {
 		long end = System.currentTimeMillis();
 		double time =(double)((end-start)/1e3);
 		System.out.println("Vertex Cover Size:"+VertexCoverSol.size()+" time:"+time);
+		SolutionRecorder sr = SolutionRecorder.getInstance();
+		sr.printTrace("%.3f,%d%n", time, VertexCoverSol.size());//trace
+		sr.printSolution(new ArrayList<Vertex>(VertexCoverSol));
 	}
 }
