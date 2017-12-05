@@ -54,7 +54,7 @@ public class Approx {
 			}
 		}
 		long end = System.currentTimeMillis();
-		int time =(int)((end-start)/1e3);
+		double time =(double)((end-start)/1e3);
 		System.out.println("Vertex Cover Size:"+VertexCoverSol.size()+" time:"+time);
 	}
 }
