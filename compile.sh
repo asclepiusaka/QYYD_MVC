@@ -1,0 +1,1 @@
+javac -d "./bin" -cp "./src:./lib/*" src/Approx.java src/Graph.java src/SolutionRecorder.java src/Vertex.java src/BnBClone.java src/HC_MVC.java src/Solver.java src/BnB.java src/LBUtil.java src/Edge.java src/LocalSearch.java 
